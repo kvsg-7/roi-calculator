@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator-box {
+      background-color: #fff;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 350px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #444;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 16px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator-box">
+    <h2>ROI Calculator</h2>
+
+    <label for="gain">Gain from Investment (₹):</label>
+    <input type="number" id="gain" placeholder="e.g. 50000" />
+
+    <label for="cost">Cost of Investment (₹):</label>
+    <input type="number" id="cost" placeholder="e.g. 30000" />
+
+    <button onclick="calculateROI()">Calculate ROI</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateROI() {
+      const gain = parseFloat(document.getElementById("gain").value);
+      const cost = parseFloat(document.getElementById("cost").value);
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(gain) || isNaN(cost) || cost === 0) {
+        resultDiv.innerHTML = "⚠️ Please enter valid numbers. Cost cannot be zero.";
+        return;
+      }
+
+      const roi = ((gain - cost) / cost) * 100;
+      resultDiv.innerHTML = `✅ ROI: ${roi.toFixed(2)}%`;
+    }
+  </script>
+
+</body>
+</html>
